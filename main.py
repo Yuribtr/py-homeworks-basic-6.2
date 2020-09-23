@@ -20,10 +20,7 @@ class Album:
         self.tracks = []
 
     def get_tracks(self):
-        result = []
-        for track in self.tracks:
-            result.append(track.show())
-        return result
+        return [track.show() for track in self.tracks]
 
     def get_duration(self):
         result = 0
