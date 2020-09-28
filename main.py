@@ -3,8 +3,8 @@ class Track:
         self.name = name
         self.duration = duration
 
-    def show(self):
-        return f'<{self.name} - {self.duration}>'
+    def __str__(self):
+        return f'<"{self.name}" - {self.duration} min>'
 
     def set_name(self, name):
         self.name = name
@@ -20,7 +20,7 @@ class Album:
         self.tracks = []
 
     def get_tracks(self):
-        return [track.show() for track in self.tracks]
+        return [track for track in self.tracks]
 
     def get_duration(self):
         result = 0
