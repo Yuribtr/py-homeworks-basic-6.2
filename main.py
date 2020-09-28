@@ -15,10 +15,20 @@ class Track:
     def __le__(self, other):
         return self.__duration <= other.__duration
 
-    def set_name(self, name):
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
         self.__name = name
 
-    def set_duration(self, duration):
+    @property
+    def duration(self):
+        return self.__duration
+
+    @duration.setter
+    def duration(self, duration):
         self.__duration = duration
 
 
