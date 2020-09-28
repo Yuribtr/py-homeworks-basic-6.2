@@ -52,13 +52,31 @@ class Album:
     def __add__(self, other):
         return str(self) + str(other)
 
-    def get_tracks(self):
-        return [track for track in self.__tracks]
+    @property
+    def name(self):
+        return self.__name
 
-    def get_duration(self):
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    @property
+    def group(self):
+        return self.__group
+
+    @group.setter
+    def group(self, group):
+        self.__group = group
+
+    @property
+    def tracks(self):
+        return self.__tracks
+
+    @property
+    def duration(self):
         result = 0
         for track in self.__tracks:
-            result += track.__duration
+            result += track.duration
         return result
 
     def add_track(self, track):
@@ -81,7 +99,8 @@ album.add_track(Track('Трансильвания', 4))
 albums.append(album)
 
 for album in albums:
-    print(album + '\n')
+    print(album)
+    print('Length: ' + str(album.duration) + ' min\n')
 
 track1 = Track('Bohemian rhapsody', 6)
 track2 = Track('The show must go on', 4)
