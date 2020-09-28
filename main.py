@@ -9,6 +9,12 @@ class Track:
     def __add__(self, other):
         return str(self) + str(other)
 
+    def __lt__(self, other):
+        return self.duration < other.duration
+
+    def __le__(self, other):
+        return self.duration <= other.duration
+
     def set_name(self, name):
         self.name = name
 
@@ -70,3 +76,7 @@ for album in albums:
     # for track in enumerate(album.get_tracks(), 1):
     #     print(f'{track[0]}. {track[1]}')
     # print(f'Общая длительность альбома: {album.get_duration()} минут\n')
+
+track1 = Track('Bohemian rhapsody', 6)
+track2 = Track('The show must go on', 4)
+print(track1 > track2)
