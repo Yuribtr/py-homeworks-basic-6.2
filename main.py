@@ -1,41 +1,41 @@
 class Track:
     def __init__(self, name='', duration=0):
-        self.name = name
-        self.duration = duration
+        self.__name = name
+        self.__duration = duration
 
     def __str__(self):
-        return f'{self.name} - {self.duration} min'
+        return f'{self.__name} - {self.__duration} min'
 
     def __add__(self, other):
         return str(self) + str(other)
 
     def __lt__(self, other):
-        return self.duration < other.duration
+        return self.__duration < other.__duration
 
     def __le__(self, other):
-        return self.duration <= other.duration
+        return self.__duration <= other.__duration
 
     def set_name(self, name):
-        self.name = name
+        self.__name = name
 
     def set_duration(self, duration):
-        self.duration = duration
+        self.__duration = duration
 
 
 class Album:
     def __init__(self, name='', group=''):
-        self.name = name
-        self.group = group
-        self.tracks = []
+        self.__name = name
+        self.__group = group
+        self.__tracks = []
 
     def __str__(self):
-        result = 'Name group: ' + self.name
-        result += '\nName album: ' + self.group
+        result = 'Name group: ' + self.__name
+        result += '\nName album: ' + self.__group
         result += '\nTracks:'
-        if len(self.tracks) < 1:
+        if len(self.__tracks) < 1:
             result += '\nno tracks'
         else:
-            for track in enumerate(self.tracks, 1):
+            for track in enumerate(self.__tracks, 1):
                 result += f'\n      {track[0]}. {track[1]}'
         return result
 
@@ -43,18 +43,18 @@ class Album:
         return str(self) + str(other)
 
     def get_tracks(self):
-        return [track for track in self.tracks]
+        return [track for track in self.__tracks]
 
     def get_duration(self):
         result = 0
-        for track in self.tracks:
-            result += track.duration
+        for track in self.__tracks:
+            result += track.__duration
         return result
 
     def add_track(self, track):
         if not isinstance(track, Track):
             raise NotImplementedError('Can not add this object to track list')
-        self.tracks.append(track)
+        self.__tracks.append(track)
 
 
 albums = []
@@ -72,10 +72,6 @@ albums.append(album)
 
 for album in albums:
     print(album + '\n')
-    # print(f'Альбом "{album.name}" группы {album.group}:')
-    # for track in enumerate(album.get_tracks(), 1):
-    #     print(f'{track[0]}. {track[1]}')
-    # print(f'Общая длительность альбома: {album.get_duration()} минут\n')
 
 track1 = Track('Bohemian rhapsody', 6)
 track2 = Track('The show must go on', 4)
