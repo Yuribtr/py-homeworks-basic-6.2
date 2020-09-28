@@ -6,6 +6,9 @@ class Track:
     def __str__(self):
         return f'{self.name} - {self.duration} min'
 
+    def __add__(self, other):
+        return str(self) + str(other)
+
     def set_name(self, name):
         self.name = name
 
@@ -18,6 +21,20 @@ class Album:
         self.name = name
         self.group = group
         self.tracks = []
+
+    def __str__(self):
+        result = 'Name group: ' + self.name
+        result += '\nName album: ' + self.group
+        result += '\nTracks:'
+        if len(self.tracks) < 1:
+            result += '\nno tracks'
+        else:
+            for track in enumerate(self.tracks, 1):
+                result += f'\n      {track[0]}. {track[1]}'
+        return result
+
+    def __add__(self, other):
+        return str(self) + str(other)
 
     def get_tracks(self):
         return [track for track in self.tracks]
@@ -48,7 +65,8 @@ album.add_track(Track('Трансильвания', 4))
 albums.append(album)
 
 for album in albums:
-    print(f'Альбом "{album.name}" группы {album.group}:')
-    for track in enumerate(album.get_tracks(), 1):
-        print(f'{track[0]}. {track[1]}')
-    print(f'Общая длительность альбома: {album.get_duration()} минут\n')
+    print(album + '\n')
+    # print(f'Альбом "{album.name}" группы {album.group}:')
+    # for track in enumerate(album.get_tracks(), 1):
+    #     print(f'{track[0]}. {track[1]}')
+    # print(f'Общая длительность альбома: {album.get_duration()} минут\n')
