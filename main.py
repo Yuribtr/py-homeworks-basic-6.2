@@ -4,7 +4,7 @@ class Track:
         self.duration = duration
 
     def __str__(self):
-        return f'<"{self.name}" - {self.duration} min>'
+        return f'{self.name} - {self.duration} min'
 
     def set_name(self, name):
         self.name = name
